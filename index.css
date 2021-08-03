@@ -67,7 +67,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("./images/goku.png");
     box-shadow: inset 0 0 0 2000px rgb(0 0 0 / 50%);
     margin: 10px;
     border-radius: 10px;

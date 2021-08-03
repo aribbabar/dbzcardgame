@@ -17,6 +17,6 @@ class Character {
     }
 
     getBackgroundUrl() {
-        return "url(\"./images/" + this.name.replace(/\s+/g, "") + ".png\")";
+        return "url(\"images/" + this.name.replace(/\s+/g, "") + ".png\")";
     }
 }

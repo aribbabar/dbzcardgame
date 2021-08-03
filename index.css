@@ -13,10 +13,6 @@ body {
     background-color: rgb(51, 48, 48);
 }
 
-.enemy-container {
-    border-bottom: 1px solid rgb(0, 0, 0);
-}
-
 .player-container {
     background-color: rgb(252, 252, 252);
 }
@@ -42,6 +38,16 @@ body {
     width: 50%;
     height: 15px;
     border-radius: 10px;
+}
+
+.enemy-health-text {
+    color: #fff;
+    margin-right: 15px;
+}
+
+.player-health-text {
+    color: rgb(50, 50, 50);
+    margin-right: 15px;
 }
 
 #enemy-cards,

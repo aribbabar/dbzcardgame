@@ -17,6 +17,8 @@ class Character {
     }
 
     getBackgroundUrl() {
-        return "url(\"images/" + this.name.replace(/\s+/g, "") + ".png\")";
+        let lowerCaseName = this.name.toLowerCase();
+
+        return "url(\"images/" + lowerCaseName.replace(/\s+/g, "") + ".png\")";
     }
 }

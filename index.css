@@ -7,6 +7,11 @@ body {
     font-family: sans-serif;
 }
 
+a {
+    color: rgb(174, 174, 211);
+    text-decoration: none;
+}
+
 .large-font-size {
     color: #fff;
     font-size: 100px;
@@ -80,16 +85,23 @@ body {
     box-shadow: inset 0 0 0 2000px rgb(0 0 0 / 50%);
     margin: 10px;
     border-radius: 10px;
+    transition: 0.2s;
+    color: #fff;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
 }
 
 .card-title {
     color: #fff;
 }
 
-#middle-btn {
+#next-btn {
     display: none;
     position: fixed;
-    left: 50%;
+    left: 48%;
     top: 48%;
     background-color: rgb(68, 68, 170);
     border-radius: 10px;
@@ -100,6 +112,27 @@ body {
     cursor: pointer;
 }
 
-#middle-btn:hover {
+#next-btn:hover {
     background-color: rgb(104, 104, 192);
+}
+
+#enemy-health-loss,
+#player-health-loss {
+    color: red;
+    text-align: center;
+}
+
+.footer {
+    text-align: right;
+}
+
+.footer-text {
+    display: inline-block;
+    background-color: rgb(50, 50, 50);
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-top: 10px;
 }

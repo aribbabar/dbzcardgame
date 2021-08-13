@@ -1,37 +1,49 @@
-let randomCharacters = Array.from(generateRandomCharacters(4));
-let cards = generateCards(randomCharacters);
+let cards = generateCards(4);
 
-// Append enemy cards
-document.getElementById("enemy-cards").appendChild(cards[0]);
+addCardsToDocument();
+addEventListeners();
 
-for(let i = 1;i < cards.length;i++) {
-    // Add an event listener to each player card
-    cards[i].addEventListener("click", cardOnClick);
+function cardOnClick(event) {
+    let card = event.currentTarget.parameter;
 
-    // Append each player card to the player cards container
-    document.getElementById("player-cards").appendChild(cards[i]);
+    card.getCard().style.transform = "translateY(-10px)";
+    
+    changeCardsTextToPowerLevel();
+    compareCharacters(card);
+    removeEventListeners();
+    addNextBtn(card);
 }
 
-// Add event listener for the next button
-let nextBtn = document.getElementById("middle-btn");
+function addNextBtn(card) {
+    let nextBtn = document.getElementById("next-btn");
+    
+    nextBtn.style.display = "block";
 
-nextBtn.addEventListener("click", nextBtnClick);
+    nextBtn.addEventListener("click", function() {
+        changeCardsTextToCharacterName();
+        changeCharacters();
+        removeHealthLoss();
 
-function nextBtnClick() {
+        nextBtn.style.display = "none";
+    });
+}
+
+function removeHealthLoss() {
+    document.getElementById("enemy-health-loss").style.display = "none";
+    document.getElementById("player-health-loss").style.display = "none";
+}
+
+function changeCharacters() {
+    cards = generateCards(4);
+
+    removeCardsFromDocument();
+    addCardsToDocument();
     addEventListeners();
-
-    nextBtn.style.display = "none";
 }
 
-function addEventListeners() {
+function removeCardsFromDocument() {
     let playerCardsContainer = document.getElementById("player-cards");
     let enemyCardContainer = document.getElementById("enemy-cards");
-
-    // Generate new characters
-    randomCharacters = Array.from(generateRandomCharacters(4));
-
-    // Generate new cards (divs) with the newly generated characters
-    cards = generateCards(randomCharacters);
 
     // Remove all player cards
     while(playerCardsContainer.firstChild) {
@@ -40,70 +52,22 @@ function addEventListeners() {
 
     // Remove enemy card
     enemyCardContainer.removeChild(enemyCardContainer.firstChild);
-
-    // Append enemy cards
-    enemyCardContainer.appendChild(cards[0]);
-
-    for(let i = 1;i < cards.length;i++) {
-        // Add an event listener to each player card
-        cards[i].addEventListener("click", cardOnClick);
-
-        // Append each player card to the player cards container
-        document.getElementById("player-cards").appendChild(cards[i]);
-    }
 }
 
-/**
- * All of the onClick event logic goes here
- * @param {Event} e 
- */
-function cardOnClick(e) {
-    let characterName;
-
-    // This is for handling whether player clicks on the actual div or the character name
-    if(e.target.firstChild.innerHTML) {
-        characterName = e.target.firstChild.innerHTML;
-    } else {
-        characterName = e.target.innerHTML;
-    }
-
-    let index = findCharacterIndex(characterName);
-    
-    compareCharacters(index);
-    removeEventListeners();
-
-    nextBtn.style.display = "block";
-}
-
-/**
- * Removes all event listeners from the cards array
- */
 function removeEventListeners() {
     for(let i = 1;i < cards.length;i++) {
-        cards[i].removeEventListener("click", cardOnClick);
+        cards[i].getCard().removeEventListener("click", cardOnClick);
     }
 }
 
 /**
- * Finds and returns a character index from the randomCharacters array
- * @param {String} characterName 
- * @returns Character index
+ * Compares the player character that was clicked to the enemy character's power level.
+ * Also handles win and lose states
+ * @param {Card} card The player card that you want to compare with
  */
-function findCharacterIndex(characterName) {
-    for(let i = 0;i < randomCharacters.length;i++) {
-        if(randomCharacters[i].getName() == characterName) {
-            return i;
-        }
-    }
-}
-
-/**
- * Compares the enemy character with the "index" player character
- * @param {Number} index 
- */
-function compareCharacters(index) {
-    let playerPowerLevel = randomCharacters[index].getPowerLevel();
-    let enemyPowerLevel = randomCharacters[0].getPowerLevel();
+function compareCharacters(card) {
+    let playerPowerLevel = card.character.getPowerLevel();
+    let enemyPowerLevel = cards[0].character.getPowerLevel();
 
     let playerHealth = document.getElementById("player-health");
     let enemyHealth = document.getElementById("enemy-health");
@@ -111,23 +75,32 @@ function compareCharacters(index) {
     let playerHealthText = document.getElementById("player-health-text");
     let enemyHealthText = document.getElementById("enemy-health-text");
 
-    changeTextToPowerLevel();
-
-
+    // Player wins: Enemy loses health
     if(playerPowerLevel > enemyPowerLevel) {
-        // Player wins: Enemy loses health
-        let newEnemyHealth = enemyHealthText.innerHTML - (playerPowerLevel - enemyPowerLevel);
+        let enemyHealthLossElement = document.getElementById("enemy-health-loss");
+        let enemyHealthLoss = playerPowerLevel - enemyPowerLevel;
+        let newEnemyHealth = enemyHealthText.innerHTML - enemyHealthLoss;
 
         enemyHealth.style.width = (newEnemyHealth / 10) * 100 + "%";
 
         enemyHealthText.innerHTML = newEnemyHealth;
-    } else if(playerPowerLevel < enemyPowerLevel) {
-        // Enemey wins: Player loses health
-        let newPlayerHealth = playerHealthText.innerHTML - (enemyPowerLevel - playerPowerLevel);
+
+        enemyHealthLossElement.style.display = "block";
+        enemyHealthLossElement.innerHTML = "- " + enemyHealthLoss;
+    }
+
+    // Enemey wins: Player loses health
+    if(playerPowerLevel < enemyPowerLevel) {
+        let playerHealthLossElement = document.getElementById("player-health-loss");
+        let playerHealthLoss = (enemyPowerLevel - playerPowerLevel);
+        let newPlayerHealth = playerHealthText.innerHTML - playerHealthLoss;
 
         playerHealth.style.width = (newPlayerHealth / 10) * 100 + "%";
 
         playerHealthText.innerHTML = newPlayerHealth;
+
+        playerHealthLossElement.style.display = "block";
+        playerHealthLossElement.innerHTML = "- " + playerHealthLoss;
     }
 
     if(playerHealthText.innerHTML <= 0) {
@@ -139,35 +112,67 @@ function compareCharacters(index) {
     }
 }
 
+function changeCardsTextToCharacterName() {
+    cards.forEach(card => {
+        card.cardTitle.innerHTML = card.character.getName();
+        card.cardTitle.classList.remove("large-font-size");
+    });
+}
+
 /**
- * Changed the card text from character names to their power levels
+ * Changes all cards in the documents' title for its corresponding character power level
  */
-function changeTextToPowerLevel() {
-    for(let i = 0;i < cards.length;i++) {
-        console.log(cards[i].firstChild.className);
-        cards[i].firstChild.className = "large-font-size";
-        cards[i].firstChild.innerHTML = randomCharacters[i].getPowerLevel();
+function changeCardsTextToPowerLevel() {
+    cards.forEach(card => {
+        card.cardTitle.innerHTML = card.character.getPowerLevel();
+        card.cardTitle.className = "large-font-size";
+    });
+}
+
+/**
+ * Adds event listeners to player cards
+ */
+function addEventListeners() {
+    for(let i = 1;i < cards.length;i++) {
+        // Add an event listener to each player card
+        cards[i].getCard().addEventListener("click", cardOnClick);
+        cards[i].getCard().parameter = cards[i];
     }
 }
 
 /**
- * Generates an array of random character cards
- * @param {Array} randomCharacters 
- * @returns An array of random character cards
+ * Adds both enemy and player cards to document
  */
-function generateCards(randomCharacters) {
+function addCardsToDocument() {
+    document.getElementById("enemy-cards").appendChild(cards[0].getCard());
+
+    for(let i = 1;i < cards.length;i++) {    
+        // Append each player card to the player cards container
+        document.getElementById("player-cards").appendChild(cards[i].getCard());
+    }
+}
+
+/**
+ * Creates and returns a new array of random character cards (divs)
+ * @param {Number} numOfCards 
+ * @returns A new array of random character cards
+ */
+function generateCards(numOfCards) {
     let cards = new Array();
+    let randomCharacters = new Set();
 
-    for(let i = 0;i < randomCharacters.length;i++) {
-        let card = document.createElement("div");
-        card.className = "card";
-        card.style.backgroundImage = randomCharacters[i].getBackgroundUrl();
+    // Generate random characters
+    while(randomCharacters.size != numOfCards) {
+        let randomCharacter = allCharacters[getRandomInt(allCharacters.length - 1)];
 
-        let cardTitle = document.createElement("h1");
-        cardTitle.className = "card-title";
-        cardTitle.innerHTML = randomCharacters[i].getName();
+        randomCharacters.add(randomCharacter);
+    }
 
-        card.appendChild(cardTitle);
+    randomCharacters = Array.from(randomCharacters);
+
+    // Generate cards
+    for(let i = 0;i < numOfCards;i++) {
+        let card = new Card(randomCharacters[i]);
 
         cards.push(card);
     }
@@ -176,27 +181,10 @@ function generateCards(randomCharacters) {
 }
 
 /**
- * Generates random characters
- * @param {Number} numOfCharacters Integer
- * @returns {Set} A set of distinct characters
- */
-function generateRandomCharacters(numOfCharacters) {
-    let characters = new Set();
-
-    while(characters.size != numOfCharacters) {
-        let randomCharacter = allCharacters[getRandomInt(allCharacters.length - 1)];
-
-        characters.add(randomCharacter);
-    }
-
-    return characters;
-}
-
-/**
  * Generates a random number between 0 (inclusive) and max (inclusive)
  * @param {Number} max 
  * @returns A random number between 0 (inclusive) and max (inclusive)
  */
-function getRandomInt(max) {
+ function getRandomInt(max) {
     return Math.floor(Math.random() * (max + 1));
 }

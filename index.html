@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragon Ball Z: The Card Game</title>
     <link rel="stylesheet" href="index.css">
+    <script src="card.js" defer></script>
     <script src="character.js" defer></script>
     <script src="characters.js" defer></script>
     <script src="index.js" defer></script>
@@ -16,19 +17,24 @@
             <h1 id="enemy-health-text">10</h1>
             <div class="enemy-health-overlay">
                 <div id="enemy-health"></div>
+                <h2 id="enemy-health-loss"></h2>
             </div>
         </div>
         <div id="enemy-cards"></div>
     </div>
-    <p id="middle-btn">Next</p>
+    <p id="next-btn">Next</p>
     <div class="player-container">
         <div class="player-health-container">
             <h1 id="player-health-text">10</h1>
             <div class="player-health-overlay">
                 <div id="player-health"></div>
+                <h2 id="player-health-loss"></h2>
             </div>
         </div>
         <div id="player-cards"></div>
+        <div class="footer">
+            <p class="footer-text">Inspired by Megha Pathak's <a href="https://levelup.gitconnected.com/learn-concepts-of-vanilla-javascript-while-building-a-privacy-card-game-in-5-easy-steps-7b0a2d89db63" target="_blank">article</a></p>
+        </div>
     </div>
 </body>
 </html>

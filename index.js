@@ -86,6 +86,7 @@ function removeEventListeners() {
  * @param {Card} card The player card that you want to compare with
  */
 function compareCharacters(card) {
+    let maxHealth = 10;
     let playerPowerLevel = card.character.getPowerLevel();
     let enemyPowerLevel = cards[0].character.getPowerLevel();
 
@@ -101,7 +102,7 @@ function compareCharacters(card) {
         let enemyHealthLoss = playerPowerLevel - enemyPowerLevel;
         let newEnemyHealth = enemyHealthText.innerHTML - enemyHealthLoss;
 
-        enemyHealth.style.width = (newEnemyHealth / 10) * 100 + "%";
+        enemyHealth.style.width = (newEnemyHealth / maxHealth) * 100 + "%";
 
         enemyHealthText.innerHTML = newEnemyHealth;
 
@@ -115,7 +116,7 @@ function compareCharacters(card) {
         let playerHealthLoss = (enemyPowerLevel - playerPowerLevel);
         let newPlayerHealth = playerHealthText.innerHTML - playerHealthLoss;
 
-        playerHealth.style.width = (newPlayerHealth / 10) * 100 + "%";
+        playerHealth.style.width = (newPlayerHealth / maxHealth) * 100 + "%";
 
         playerHealthText.innerHTML = newPlayerHealth;
 

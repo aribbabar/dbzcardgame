@@ -19,8 +19,15 @@ a {
 
 .enemy-container,
 .player-container {
-    height: 50vh;
+    min-height: 50vh;
     background-color: rgb(51, 48, 48);
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    .enemy-container {
+        padding-bottom: 50px;
+    }
 }
 
 .player-container {
@@ -38,10 +45,7 @@ a {
     .player-health-container {
         display: flex;
         justify-content: center;
-    }
-
-    .player-health-container {
-        margin: 24px;
+        padding-top: 24px;
     }
 }
 
@@ -113,9 +117,9 @@ a {
 
 #next-btn {
     display: none;
-    position: fixed;
-    left: 48%;
-    top: 48%;
+    position: absolute;
+    left: 46%;
+    top: 96%;
     background-color: rgb(68, 68, 170);
     border-radius: 10px;
     padding: 8px 30px 8px 30px;
@@ -123,12 +127,12 @@ a {
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
+    z-index: 1;
 }
 
 @media screen and (max-width: 768px) {
     #next-btn {
-        position: absolute;
-        left: 37%;
+        left: 35%;
     }
 }
 

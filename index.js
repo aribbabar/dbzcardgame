@@ -3,6 +3,10 @@ let cards = generateCards(4);
 addCardsToDocument();
 addEventListeners();
 
+/**
+ * Handles all behaviour when a card is clicked
+ * @param {Event} event 
+ */
 function cardOnClick(event) {
     let card = event.currentTarget.parameter;
 
@@ -14,6 +18,10 @@ function cardOnClick(event) {
     addNextBtn(card);
 }
 
+/**
+ * Adds the next button and also adds a event listener on the button
+ * @param {Card} card 
+ */
 function addNextBtn(card) {
     let nextBtn = document.getElementById("next-btn");
     
@@ -28,11 +36,17 @@ function addNextBtn(card) {
     });
 }
 
+/**
+ * Remove the health loss text
+ */
 function removeHealthLoss() {
     document.getElementById("enemy-health-loss").style.display = "none";
     document.getElementById("player-health-loss").style.display = "none";
 }
 
+/**
+ * Creates and sets a set of new random characters
+ */
 function changeCharacters() {
     cards = generateCards(4);
 
@@ -41,6 +55,9 @@ function changeCharacters() {
     addEventListeners();
 }
 
+/**
+ * Remove all cards from both enemy and player container
+ */
 function removeCardsFromDocument() {
     let playerCardsContainer = document.getElementById("player-cards");
     let enemyCardContainer = document.getElementById("enemy-cards");
@@ -54,6 +71,9 @@ function removeCardsFromDocument() {
     enemyCardContainer.removeChild(enemyCardContainer.firstChild);
 }
 
+/**
+ * Remove event listeners from player cards
+ */
 function removeEventListeners() {
     for(let i = 1;i < cards.length;i++) {
         cards[i].getCard().removeEventListener("click", cardOnClick);

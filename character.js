@@ -1,4 +1,5 @@
 let allCharacters = new Array();
+let numOfCharacters = 0;
 
 class Character {
     constructor(name, powerLevel) {
@@ -6,6 +7,7 @@ class Character {
         this.powerLevel = powerLevel;
 
         allCharacters.push(this);
+        numOfCharacters++;
     }
 
     getName() {

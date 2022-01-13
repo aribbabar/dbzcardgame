@@ -23,11 +23,11 @@ a {
   background-color: rgb(51, 48, 48);
   position: relative;
   text-align: center;
-  color: #fff;
 }
 
 .enemy-container .title {
   margin-top: 2rem;
+  color: #fff;
 }
 
 .player-container .title {

@@ -1,167 +1,178 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 a {
-    color: rgb(174, 174, 211);
-    text-decoration: none;
+  color: rgb(174, 174, 211);
+  text-decoration: none;
 }
 
 .large-font-size {
-    color: #fff;
-    font-size: 100px;
+  color: #fff;
+  font-size: 100px;
 }
 
 .enemy-container,
 .player-container {
-    min-height: 50vh;
-    background-color: rgb(51, 48, 48);
-    position: relative;
+  min-height: 50vh;
+  background-color: rgb(51, 48, 48);
+  position: relative;
+  text-align: center;
+  color: #fff;
+}
+
+.enemy-container .title {
+  margin-top: 2rem;
+}
+
+.player-container .title {
+  margin-top: 2rem;
+  color: #000;
 }
 
 @media screen and (max-width: 768px) {
-    .enemy-container {
-        padding-bottom: 50px;
-    }
+  .enemy-container {
+    padding-bottom: 50px;
+  }
 }
 
 .player-container {
-    background-color: rgb(252, 252, 252);
+  background-color: rgb(252, 252, 252);
 }
 
 .enemy-health-container,
 .player-health-container {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 768px) {
-    .enemy-health-container,
-    .player-health-container {
-        display: flex;
-        justify-content: center;
-        padding-top: 24px;
-    }
+  .enemy-health-container,
+  .player-health-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 24px;
+  }
 }
 
 .enemy-health-overlay,
 .player-health-overlay {
-    width: 200px;
-    height: 15px;
-    background-color: rgb(235, 235, 235);
-    border-radius: 10px;
-    margin: 10px 10px 10px 0;
+  width: 200px;
+  height: 15px;
+  background-color: rgb(235, 235, 235);
+  border-radius: 10px;
+  margin: 10px 10px 10px 0;
 }
 
 #enemy-health,
 #player-health {
-    background-color: red;
-    width: 100%;
-    height: 15px;
-    border-radius: 10px;
+  background-color: red;
+  width: 100%;
+  height: 15px;
+  border-radius: 10px;
 }
 
 #enemy-health-text {
-    color: #fff;
-    margin-right: 15px;
+  color: #fff;
+  margin-right: 15px;
 }
 
 #player-health-text {
-    color: rgb(50, 50, 50);
-    margin-right: 15px;
+  color: rgb(50, 50, 50);
+  margin-right: 15px;
 }
 
 #enemy-cards,
 #player-cards {
-    min-height: 40vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) {
-    #enemy-cards,
-    #player-cards {
-        flex-direction: column;
-        overflow: auto;
-        margin-top: 20px;
-    }
+  #enemy-cards,
+  #player-cards {
+    flex-direction: column;
+    overflow: auto;
+    margin-top: 20px;
+  }
 }
 
 .card {
-    min-width: 250px;
-    min-height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 0 0 0 2000px rgb(0 0 0 / 50%);
-    margin: 10px;
-    border-radius: 10px;
-    transition: 0.2s;
-    color: #fff;
+  min-width: 250px;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 2000px rgb(0 0 0 / 50%);
+  margin: 10px;
+  border-radius: 10px;
+  transition: 0.2s;
+  color: #fff;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    cursor: pointer;
+  transform: translateY(-10px);
+  cursor: pointer;
 }
 
 .card-title {
-    color: #fff;
+  color: #fff;
 }
 
 #next-btn {
-    display: none;
-    position: absolute;
-    left: 46%;
-    top: 96%;
-    background-color: rgb(68, 68, 170);
-    border-radius: 10px;
-    padding: 8px 30px 8px 30px;
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 1;
+  display: none;
+  position: absolute;
+  left: 46%;
+  top: 96%;
+  background-color: rgb(68, 68, 170);
+  border-radius: 10px;
+  padding: 8px 30px 8px 30px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1;
 }
 
 @media screen and (max-width: 768px) {
-    #next-btn {
-        left: 35%;
-    }
+  #next-btn {
+    left: 35%;
+  }
 }
 
 #next-btn:hover {
-    background-color: rgb(104, 104, 192);
+  background-color: rgb(104, 104, 192);
 }
 
 #enemy-health-loss,
 #player-health-loss {
-    color: red;
-    text-align: center;
+  color: red;
+  text-align: center;
 }
 
 .footer {
-    text-align: right;
+  text-align: right;
 }
 
 @media screen and (max-width: 768px) {
-    .footer {
-        text-align: center;
-    }
+  .footer {
+    text-align: center;
+  }
 }
 
 .footer-text {
-    display: inline-block;
-    background-color: rgb(50, 50, 50);
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 18px;
-    margin: 10px;
+  display: inline-block;
+  background-color: rgb(50, 50, 50);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+  margin: 10px;
 }

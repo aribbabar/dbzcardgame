@@ -30,6 +30,11 @@ body::-webkit-scrollbar-thumb {
   background-clip: padding-box;
 }
 
+/* Utilities */
+.pointer {
+  cursor: pointer;
+}
+
 /* Instructions */
 .instructions {
   background-color: #6f0e18;
@@ -82,6 +87,7 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 50vh;
 }
 
 .enemy > *,
@@ -147,6 +153,10 @@ body::-webkit-scrollbar-thumb {
   border: 1px solid;
 }
 
+.card:hover {
+  transform: translateY(-10px);
+}
+
 .player .card {
   margin-bottom: 1rem;
 }
@@ -192,5 +202,19 @@ body::-webkit-scrollbar-thumb {
 
   to {
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (min-width: 768px) {
+  .player .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .player .card {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 }

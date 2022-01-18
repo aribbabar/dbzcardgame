@@ -156,7 +156,7 @@ const handleNextBtnClick = (e) => {
   gameLogic();
 
   e.currentTarget.style.display = "none";
-  card.style.transform = "translateY(0)";
+  card.style.transform = "";
 };
 
 const handlePlayAgainBtnClick = (e) => {
@@ -167,7 +167,7 @@ const handlePlayAgainBtnClick = (e) => {
   const playerHealthBar = e.currentTarget.playerHealthBar;
 
   // Reset selected card's transform
-  card.style.transform = "translateY(0)";
+  card.style.transform = "";
 
   // Reset health
   enemyHealth.innerHTML = 10;

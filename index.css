@@ -31,9 +31,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* Utilities */
-.pointer {
-  cursor: pointer;
-}
 
 /* Instructions */
 .instructions {

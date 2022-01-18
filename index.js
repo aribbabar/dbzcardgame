@@ -1,4 +1,4 @@
-import * as game from "/game.js";
+import { startGame } from "./game.js";
 
 const startBtn = document.querySelector(".start-btn");
 
@@ -9,7 +9,5 @@ startBtn.addEventListener("click", () => {
   const game = document.querySelector(".game");
   game.style.display = "block";
 
-  game.startGame();
+  startGame();
 });
-
-game.startGame();

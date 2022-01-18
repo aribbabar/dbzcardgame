@@ -1,11 +1,10 @@
 import { allCharacters } from "./characters.js";
 
-export const startGame = () => {
+const startGame = () => {
   gameLogic();
 };
 
 const gameLogic = () => {
-  console.log("yo");
   let characters = [...allCharacters];
   characters = shuffle(characters);
 
@@ -213,3 +212,5 @@ const shuffle = (array) => {
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * max);
 };
+
+export { startGame };

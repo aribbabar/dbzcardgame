@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
+  text-align: justify;
   color: #fff;
   background-color: #961b1f;
   padding: 1rem;

@@ -50,11 +50,12 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  text-align: justify;
+  text-align: center;
   color: #fff;
   background-color: #961b1f;
   padding: 1rem;
   border-radius: 20px;
+  min-width: 25%;
 }
 
 .instructions .container .heading {
@@ -153,7 +154,7 @@ body::-webkit-scrollbar-thumb {
   border: 1px solid;
 }
 
-.card:hover {
+.player .card:hover {
   transform: translateY(-10px);
 }
 

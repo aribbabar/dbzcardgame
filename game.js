@@ -8,10 +8,16 @@ const gameLogic = () => {
   let characters = [...allCharacters];
   characters = shuffle(characters);
 
-  let randomInt = getRandomInt(characters.length);
+  let enemyCard;
 
-  const enemyCard = characters[randomInt];
-  characters.splice(randomInt, 1);
+  // Pick an enemy card whose power level is at least 5
+  for (let character of characters) {
+    if (character.getPowerLevel() >= 5) {
+      enemyCard = character;
+      characters.splice(characters.indexOf(character), 1);
+      break;
+    }
+  }
 
   let playerCards = [];
 
@@ -26,7 +32,7 @@ const gameLogic = () => {
 
   // Pick the remaining two player cards
   for (let i = 0; i < 2; i++) {
-    randomInt = getRandomInt(characters.length);
+    let randomInt = getRandomInt(characters.length);
     playerCards.push(characters[randomInt]);
     characters.splice(randomInt, 1);
   }

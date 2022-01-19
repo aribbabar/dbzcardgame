@@ -16,15 +16,16 @@ const gameLogic = () => {
   let playerCards = [];
 
   // Pick a player card such that at least one has a power level that is great than or equal to the enemy card's power level
-  for (let character in characters) {
-    if (character.powerLevel >= enemyCard.powerLevel) {
-      playerCards.push(character);
+  for (let i = 0; i < characters.length; i++) {
+    if (characters[i].getPowerLevel() >= enemyCard.getPowerLevel()) {
+      playerCards.push(characters[i]);
+      characters.splice(i, 1);
       break;
     }
   }
 
   // Pick the remaining two player cards
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 2; i++) {
     randomInt = getRandomInt(characters.length);
     playerCards.push(characters[randomInt]);
     characters.splice(randomInt, 1);
@@ -185,8 +186,6 @@ const handlePlayAgainBtnClick = (e) => {
 
   // Remove the next btn
   document.querySelector(".next-btn").style.display = "none";
-
-  console.log("hello");
 };
 
 const shuffle = (array) => {

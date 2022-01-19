@@ -1,7 +1,11 @@
+let allCharacters = [];
+
 class Character {
   constructor(name, powerLevel) {
     this.name = name;
     this.powerLevel = powerLevel;
+
+    allCharacters.push(this);
   }
 
   getName() {
@@ -19,4 +23,4 @@ class Character {
   }
 }
 
-export default Character;
+export { allCharacters, Character };
